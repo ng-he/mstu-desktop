@@ -9,10 +9,18 @@ type Pending = {
   reject: (error: Error) => void
 }
 
-export const socketPath = (): string =>
-  join(process.env.XDG_RUNTIME_DIR ?? '/tmp', 'mstu.sock')
+/// Where the engine listens: a unix socket, or a named pipe on Windows.
+///
+/// MSTU_SOCKET overrides both, which is how a second engine is talked to.
+export const socketPath = (): string => {
+  if (process.env.MSTU_SOCKET) return process.env.MSTU_SOCKET
+  if (process.platform === 'win32') return '\\\\.\\pipe\\mstu'
 
-/// Line delimited JSON over the engine's unix socket.
+  return join(process.env.XDG_RUNTIME_DIR ?? '/tmp', 'mstu.sock')
+}
+
+/// Line delimited JSON over the engine's local socket. Node connects to a
+/// named pipe by path, so nothing below here knows which it is.
 ///
 /// The engine runs on its own, so this reconnects instead of failing.
 export class Engine {

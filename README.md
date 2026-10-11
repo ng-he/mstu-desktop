@@ -9,8 +9,10 @@ npm install
 npm run dev
 ```
 
-It connects to a running engine over `$XDG_RUNTIME_DIR/mstu.sock` and reconnects
-on its own, so the engine can come and go underneath it.
+It connects to a running engine over `$XDG_RUNTIME_DIR/mstu.sock`, or
+`\\.\pipe\mstu` on Windows, and reconnects on its own, so the engine can come
+and go underneath it. `MSTU_SOCKET` names another one, which is how a second
+engine is talked to; set it the same for both.
 
 ## The UI SDK
 

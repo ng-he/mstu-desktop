@@ -5,9 +5,9 @@
   "main": "./out/main/index.js",
   "private": true,
   "scripts": {
-    "dev": "env -u ELECTRON_RUN_AS_NODE electron-vite dev",
+    "dev": "node scripts/electron-vite.mjs dev",
     "build": "npm run typecheck && electron-vite build",
-    "preview": "env -u ELECTRON_RUN_AS_NODE electron-vite preview",
+    "preview": "node scripts/electron-vite.mjs preview",
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
