@@ -1,0 +1,35 @@
+# What electron-builder makes of this app.
+#
+# The SDK a plugin's page loads is read from resources/sdk at runtime, through
+# a path relative to out/main -- so resources goes into the asar beside out,
+# and nothing in the code has to know whether it is packaged.
+appId: com.github.ng-he.mstu
+productName: mstu
+
+directories:
+  buildResources: build
+
+files:
+  - out/**
+  - resources/**
+
+# Plugins and the engine are not in here: a build of those is made by the
+# centre repository's build.sh, and the app talks to whichever engine is
+# serving.
+linux:
+  # A deb will not build without a maintainer address, and it goes out in
+  # every package: change it here if a release should carry another.
+  maintainer: nghe <hunglaphu244@gmail.com>
+  target:
+    - AppImage
+    - deb
+  category: AudioVideo
+  synopsis: Draws and wires media pipelines
+  syncDesktopName: true
+
+win:
+  target: nsis
+
+mac:
+  target: dmg
+  category: public.app-category.video
