@@ -13,10 +13,14 @@ export const NODE_WIDTH = 280
 export const NODE_HEIGHT = 210
 
 /// What the host will grant a plugin that asks for a size.
+///
+/// Wide enough for a page that puts a picture beside its settings, which is
+/// what the computer vision node does: a box drawn on a frame cannot be read
+/// in a column a few hundred pixels across.
 export const MIN_NODE_WIDTH = 240
 export const MIN_NODE_HEIGHT = 160
-export const MAX_NODE_WIDTH = 1080
-export const MAX_NODE_HEIGHT = 720
+export const MAX_NODE_WIDTH = 1280
+export const MAX_NODE_HEIGHT = 800
 
 /// How far the canvas may be zoomed, and the dot spacing at 1:1.
 const MIN_ZOOM = 0.25
